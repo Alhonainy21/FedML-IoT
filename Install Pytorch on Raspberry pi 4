@@ -1,0 +1,31 @@
+#I created the below script to prepare my Raspberry pi to do some experments with FedML.
+
+#!/bin/bash
+pip install torch -f https://torch.kmtea.eu/whl/stable.html
+pip install numpy --upgrade
+sudo apt-get install libatlas-base-dev
+pip install torchvision
+pip3 install opencv-python
+#After Pytorch
+wget https://raw.githubusercontent.com/FedML-AI/FedML-IoT/master/requirements.txt
+pip3 install -r requirements.txt
+pip3 install --upgrade wandb
+pip3 install scikit-learn
+pip3 install numpy
+pip3 install h5py
+pip3 install setproctitle
+pip3 install networkx
+pip3 install requests
+#Create submodule and Install Dataset
+git clone --recurse-submodules https://github.com/FedML-AI/FedML-IoT.git
+cd FedML-IoT/FedML/fedml_server
+git clone --recurse-submodules https://github.com/FedML-AI/FedML-Server
+sudo apt-get install --reinstall openmpi-bin libopenmpi-dev
+pip3 install mpi4py
+cd
+cd FedML
+cd FedML-IoT/FedML/fedml_server/FedML-Server/FedML/data/MNIST
+sh download_and_unzip.sh
+cd ../../../
+cd executor
+exit
